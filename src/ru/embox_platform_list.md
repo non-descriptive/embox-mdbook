@@ -1,0 +1,4 @@
+ - [ARM](platform/embox_supported_platforms_arm_ru.md)
+ - [QEMU](platform/embox_supported_platforms_qemu_ru.md)
+ - [RU](platform/embox_supported_platforms_ru.md)
+ - [x86](platform/embox_supported_platforms_x86_ru.md)

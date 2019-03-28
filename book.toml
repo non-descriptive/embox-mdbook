@@ -1,0 +1,8 @@
+[book]
+authors = ["Dmitry.Kozlovtsev"]
+multilingual = true
+src = "src"
+title = "Embox Documentation"
+
+[build]
+create-missing = false
