@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Сборка - Embox Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../../ru/embox_quick_overview_ru.html"><strong aria-hidden="true">1.</strong> Обзор</a></li><li><a href="../../ru/embox_quick_start_ru.html"><strong aria-hidden="true">2.</strong> Быстрый старт</a></li><li><a href="../../ru/embox_user_manual_ru.html"><strong aria-hidden="true">3.</strong> Руководство пользователя</a></li><li><a href="../../ru/embox_modular_structure_ru.html"><strong aria-hidden="true">4.</strong> Модульная структура Embox</a></li><li><a href="../../ru/build/embox_build_ru.html" class="active"><strong aria-hidden="true">5.</strong> Сборка</a></li><li><ol class="section"><li><a href="../../ru/build/embox_execute_debug_ru.html"><strong aria-hidden="true">5.1.</strong> Запуск и отладка</a></li></ol></li><li><a href="../../ru/embox_example_list.html"><strong aria-hidden="true">6.</strong> Примеры</a></li><li><ol class="section"><li><a href="../../ru/example/hello_world.html"><strong aria-hidden="true">6.1.</strong> Hello, world!</a></li><li><a href="../../ru/example/blinking_led.html"><strong aria-hidden="true">6.2.</strong> Мигаем LED-светодиодом</a></li><li><a href="../../ru/example/driver.html"><strong aria-hidden="true">6.3.</strong> Пример добавления драйвера</a></li><li><a href="../../ru/example/external_app.html"><strong aria-hidden="true">6.4.</strong> Пример внешнего приложения</a></li></ol></li><li><a href="../../ru/drivers/embox_drivers_ru.html"><strong aria-hidden="true">7.</strong> Драйверы</a></li><li><a href="../../ru/embox_platform_list.html"><strong aria-hidden="true">8.</strong> Поддерживаемые платформы</a></li><li><ol class="section"><li><a href="../../ru/platform/embox_supported_platforms_arm_ru.html"><strong aria-hidden="true">8.1.</strong> ARM</a></li><li><a href="../../ru/platform/embox_supported_platforms_qemu_ru.html"><strong aria-hidden="true">8.2.</strong> QEMU</a></li><li><a href="../../ru/platform/embox_supported_platforms_ru.html"><strong aria-hidden="true">8.3.</strong> RU</a></li><li><a href="../../ru/platform/embox_supported_platforms_x86_ru.html"><strong aria-hidden="true">8.4.</strong> x86</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Embox Documentation</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#Сборка" id="Сборка"><h1>Сборка</h1></a>
+<a class="header" href="#Описание-конфигурации-проекта" id="Описание-конфигурации-проекта"><h2>Описание конфигурации проекта</h2></a>
+<p>Описание конфигурация представляет собой детальное задание требований к функциональности системы. Подробнее смотри раздел &quot;Модульная структура Embox&quot;. Текущая конфигурация содержится в файлах расположенных папке 'conf/'.</p>
+<a class="header" href="#Выбор-конфигурации" id="Выбор-конфигурации"><h2>Выбор конфигурации</h2></a>
+<p>Для задания желаемых свойств целевой системы необходимо создать описание в папке 'conf/'. Если существует описание конфигурации с близкими свойствами проще воспользоваться ими. И на основе уже существующей конфигурации создать свою.</p>
+<p>Посмотреть существующие конфигурации можно с помощью команды:</p>
+<pre><code>    $ make confload
+</code></pre>
+<p>затем можно сделать выбранную конфигурацию рабочей с помощью команды:</p>
+<pre><code>    $ make confload-&lt;template&gt;
+</code></pre>
+<p>Пример:</p>
+<pre><code>    $ make confload
+    List of available templates:
+      ...
+      platform/quake3/qemu
+      ...
+    Use 'make confload-&lt;template&gt;' to load one.
+
+    $ make confload-platform/quake3/qemu
+</code></pre>
+<p>в нем выбирается имеющаяся в списке конфигурация platform/quake3/qemu</p>
+<a class="header" href="#Сборка-из-имеющейся-конфигурации" id="Сборка-из-имеющейся-конфигурации"><h2>Сборка из имеющейся конфигурации</h2></a>
+<p>Для сборки образа из имеющейся конфигурации необходимо сделать рабочей выбранную конфигурацию, как описано в предыдущем примере. А затем выполнить команду</p>
+<pre><code>    $ make
+</code></pre>
+<p>для сборки образа. В случае успешного завершения появится надпись &quot;Build complete&quot;, а также файл образа в формате ELF 'build/base/bin/embox'.</p>
+<p>Например:</p>
+<pre><code>    text	   data	    bss	    dec	    hex	filename
+    1259425	 248540	170593504	172101469	a420f5d	build/base/bin/embox
+    Build complete
+</code></pre>
+<a class="header" href="#Изменение-характеристик-системы" id="Изменение-характеристик-системы"><h2>Изменение характеристик системы</h2></a>
+<p>После выбора конфигурации ее требуется изменить. Текущая (рабочая) конфигурация находиться в папке conf/. Изменения файлов в этой папке изменяют характеристики конечной системы до желаемых. Важно: если сделать make confload-<template>, удалить папку или сделать очистку проекта, которая затронет текущую конфигурацию (например, make distclean), текущие изменения потеряются.</p>
+<a class="header" href="#Изменение-функциональности-системы" id="Изменение-функциональности-системы"><h3>Изменение функциональности системы</h3></a>
+<a class="header" href="#Изменение-списка-модулей" id="Изменение-списка-модулей"><h4>Изменение списка модулей</h4></a>
+<p>Функциональность системы описывается в файле mods.conf. Для изменения нужно изменить данный файл. Например, для включения дополнительной команды в список нужно добавить строчку</p>
+<pre><code>    include &lt;PACKAGE_NAME&gt;.&lt;MODULE_NAME&gt;
+</code></pre>
+<p>Например</p>
+<pre><code>    include embox.cmds.help
+</code></pre>
+<p>то же самое для обычных модулей.</p>
+<a class="header" href="#Изменение-параметров-модулей" id="Изменение-параметров-модулей"><h4>Изменение параметров модулей</h4></a>
+<p>Для изменения параметров модуля нужно указать в скобках имя опции и желаемое значение. Например, для установки размера стека потока нужно изменить (или установить) параметр thread_stack_size в модуле embox.kernel.thread.core:</p>
+<pre><code>    include embox.kernel.thread.core(thread_stack_size=0x4000)
+</code></pre>
+<a class="header" href="#Порядок-загрузки" id="Порядок-загрузки"><h4>Порядок загрузки</h4></a>
+<p>В конфигурации можно также повлиять на порядок загрузки модулей системы, для этого используется аттрибут @Runlevel(level) например @Runlevel(2), но обычно этого не требуется, поскольку при загрузке модулей учитываются их зависимости, и если требуется подгрузить модуль для работы данного модуля, то он подгрузится по зависимостям.</p>
+<a class="header" href="#Изменение-реализации-интерфейса" id="Изменение-реализации-интерфейса"><h4>Изменение реализации интерфейса</h4></a>
+<p>Для изменения реализации интерфейса или абстрактного модуля, что это такое см. раздел &quot;Модульная структура Embox&quot;, нужно просто подключить другой модуль реализующий данный интерфейс.</p>
+<p>Например, абстрактный модуль heap_api</p>
+<pre><code>    @DefaultImpl(heap_bm)
+    abstract module heap_api {
+        ...
+    }
+</code></pre>
+<p>Для подключения модуля heap_simple который также реализует данный интерфейс</p>
+<pre><code>    module heap_simple extends heap_api {module heap_simple extends heap_api {
+    ...
+    }
+</code></pre>
+<p>необходимо удалить (если есть) модуль heap_bm то есть следующую строчку</p>
+<pre><code>    include embox.mem.heap_bm
+</code></pre>
+<p>и все остальные модули которые наследуют данный абстрактный модуль
+и добавить</p>
+<pre><code>    include embox.mem.heap_simple
+</code></pre>
+<a class="header" href="#Изменение-флагов-компиляции-отладка-оптимизации" id="Изменение-флагов-компиляции-отладка-оптимизации"><h3>Изменение флагов компиляции (отладка, оптимизации)</h3></a>
+<p>Некоторыми флагами компиляции можно управлять. Флаги компиляции задаются в файле build.conf текущей конфигурации.
+Например, флаг, который часто требует изменения, флаг оптимизации:</p>
+<pre><code>    CFLAGS += -O0
+</code></pre>
+<p>данную строчку нужно заменить на</p>
+<pre><code>    CFLAGS += -O2
+</code></pre>
+<p>для сборки с оптимизацией O2.</p>
+<p>Также важным флагом является флаг -g линкера, который добавляет секцию с отладочной информацией в образ системы:</p>
+<pre><code>    LDFLAGS += -N -g
+</code></pre>
+<p>его также можно удалить для уменьшения размера, но тогда отладка будет не доступна.</p>
+<a class="header" href="#Очистка-проекта" id="Очистка-проекта"><h2>Очистка проекта</h2></a>
+<p>Сборка Embox происходит в несколько этапов. Можно выделить следующие большие этапы:</p>
+<ul>
+<li>Задание текущей конфигурации</li>
+<li>Создание графа модулей и генерация на их основе артефактов для сборки</li>
+<li>Сборка</li>
+</ul>
+<p>Поэтому очистка тоже может &quot;очищать&quot; (приводить в состояние) проект до разных стадий сборки. Для этого используются три цели make:</p>
+<ul>
+<li>make distclean</li>
+<li>make cacheclean</li>
+<li>make clean</li>
+</ul>
+<p>Цель clean просто удаляет папку build c собранными объектными и бинарными файлами. Для большинства случаем этого достаточно.</p>
+<p>Цель cacheclean полностью выполняет цель clean (то есть удаляет папку build), но кроме этого удаляет папку <code>mk/.cache</code>, в которой содержатся артефакты от разбора mybuild файлов (файлов описания модулей).</p>
+<p>Цель distclean полностью приводит проект в первоначальное состояние. То есть удаляет рабочую конфигурацию, чистит все сгенерированные и скомпилированные файлы.</p>
+<a class="header" href="#Полезные-команды" id="Полезные-команды"><h2>Полезные команды</h2></a>
+<a class="header" href="#Справка-по-командам-сборки" id="Справка-по-командам-сборки"><h3>Справка по командам сборки</h3></a>
+<p>Больше информации о возможностях командной строки при сборке можно получить с помощью make цели help:</p>
+<pre><code>    $ make help
+</code></pre>
+<p>есть различные подразделы цели, например с помощью:</p>
+<pre><code>    $ make help-mod
+</code></pre>
+<p>выводится справка по управлению модулями в текущей конфигурации</p>
+<pre><code>Usage: make mod-&lt;INFO&gt;
+
+  Print &lt;INFO&gt; info about modules:
+  list: list all modules included in build
+  brief-&lt;module_name&gt;: show brief informataion about module: dependencies, options,
+    source files
+  include-reason-&lt;module_name&gt;: show dependence subtree desribing why &lt;module_name&gt;
+    was included in build
+</code></pre>
+<a class="header" href="#Получение-дизассемблера-текущего-образа" id="Получение-дизассемблера-текущего-образа"><h3>Получение дизассемблера текущего образа</h3></a>
+<p>Файл с дизассебмлером можно получить с помощью команды:</p>
+<pre><code>    $ make disasm
+</code></pre>
+<a class="header" href="#Получение-графа-модулей" id="Получение-графа-модулей"><h3>Получение графа модулей</h3></a>
+<p>Граф модулей в формате png:</p>
+<pre><code>    $ make dot
+</code></pre>
+<p>появиться файл build/doc/embox.png.</p>
+<p>Вам потребуется установить пакет graphviz</p>
+<pre><code>   $ sudo apt install graphviz
+</code></pre>
+<a class="header" href="#Получение-документации-из-комментариев-в-doxygen-формате" id="Получение-документации-из-комментариев-в-doxygen-формате"><h3>Получение документации из комментариев в doxygen формате</h3></a>
+<p>Для генерации документации по API из комментариев в doxygen формате можно воспользоваться командой</p>
+<pre><code>    $ make docsgen
+</code></pre>
+<p>появиться папка build/docs/html в которой в формате html находится сгенеренная документация</p>
+<p>Вам потребуется пакет doxygen</p>
+<pre><code>   $ sudo apt install doxygen
+</code></pre>
+<a class="header" href="#Управление-модулями" id="Управление-модулями"><h3>Управление модулями</h3></a>
+<p>Для получения списка всех модулей которые включены в текущую конфигурацию нужно выполнить команду:</p>
+<pre><code>   $ make mod-list
+</code></pre>
+<p>Можно получить более подробную информацию по каждому модулю, например, список модулей включает embox.net.route</p>
+<pre><code>    ...
+    embox.net.route
+    ...
+</code></pre>
+<p>получить по нему информацию можно с помощью команды</p>
+<pre><code>    $ make mod-brief-embox.net.route
+</code></pre>
+<p>в результате появится информация о модуле</p>
+<pre><code>    --- embox.net.route ---
+    Inclusion reason: as dependence
+    Depends:
+    embox.net.core
+        embox.mem.pool_ndebug
+        embox.util.DListDebug
+    Dependents:
+        embox.cmd.net.ping
+        embox.cmd.net.route
+        embox.net.af_inet
+        embox.net.ipv4
+        embox.net.tcp_sock
+    OptInsts:
+        route_table_size : 8
+    Sources:
+     src/net/l3/route.c
+</code></pre>
+<p>в которой можно узнать файлы которые включены в модуль, опции уже с установленными значениями, причину по которой включен модуль (напрямую из конфига или подтянулся по зависимостям) и зависимости самого модуля.</p>
+<p>Порой нужно понять почему подключается тот или иной модуль. Для этого можно воспользоваться командой:</p>
+<pre><code>    make include-reason-&lt;module_name&gt;
+</code></pre>
+<p>Например, для того же модуля embox.net.route:</p>
+<pre><code>    $ make mod-include-reason-embox.net.route
+    embox.net.route: as dependence:
+        embox.cmd.net.ping: explicit
+        embox.cmd.net.route: explicit
+        embox.net.af_inet: explicit
+        embox.net.ipv4: explicit
+        embox.net.tcp_sock: explicit
+    #
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../../ru/embox_modular_structure_ru.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../../ru/build/embox_execute_debug_ru.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../../ru/embox_modular_structure_ru.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../../ru/build/embox_execute_debug_ru.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

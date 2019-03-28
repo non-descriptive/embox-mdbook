@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Модульная структура Embox - Embox Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../ru/embox_quick_overview_ru.html"><strong aria-hidden="true">1.</strong> Обзор</a></li><li><a href="../ru/embox_quick_start_ru.html"><strong aria-hidden="true">2.</strong> Быстрый старт</a></li><li><a href="../ru/embox_user_manual_ru.html"><strong aria-hidden="true">3.</strong> Руководство пользователя</a></li><li><a href="../ru/embox_modular_structure_ru.html" class="active"><strong aria-hidden="true">4.</strong> Модульная структура Embox</a></li><li><a href="../ru/build/embox_build_ru.html"><strong aria-hidden="true">5.</strong> Сборка</a></li><li><ol class="section"><li><a href="../ru/build/embox_execute_debug_ru.html"><strong aria-hidden="true">5.1.</strong> Запуск и отладка</a></li></ol></li><li><a href="../ru/embox_example_list.html"><strong aria-hidden="true">6.</strong> Примеры</a></li><li><ol class="section"><li><a href="../ru/example/hello_world.html"><strong aria-hidden="true">6.1.</strong> Hello, world!</a></li><li><a href="../ru/example/blinking_led.html"><strong aria-hidden="true">6.2.</strong> Мигаем LED-светодиодом</a></li><li><a href="../ru/example/driver.html"><strong aria-hidden="true">6.3.</strong> Пример добавления драйвера</a></li><li><a href="../ru/example/external_app.html"><strong aria-hidden="true">6.4.</strong> Пример внешнего приложения</a></li></ol></li><li><a href="../ru/drivers/embox_drivers_ru.html"><strong aria-hidden="true">7.</strong> Драйверы</a></li><li><a href="../ru/embox_platform_list.html"><strong aria-hidden="true">8.</strong> Поддерживаемые платформы</a></li><li><ol class="section"><li><a href="../ru/platform/embox_supported_platforms_arm_ru.html"><strong aria-hidden="true">8.1.</strong> ARM</a></li><li><a href="../ru/platform/embox_supported_platforms_qemu_ru.html"><strong aria-hidden="true">8.2.</strong> QEMU</a></li><li><a href="../ru/platform/embox_supported_platforms_ru.html"><strong aria-hidden="true">8.3.</strong> RU</a></li><li><a href="../ru/platform/embox_supported_platforms_x86_ru.html"><strong aria-hidden="true">8.4.</strong> x86</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Embox Documentation</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#Модульная-структура-embox" id="Модульная-структура-embox"><h1>Модульная структура Embox</h1></a>
+<p>Важными особенностями Embox является модульность и конфигурируемость. Под модульностью подразумевается разбиение проекта на небольшие логические части - модули, а под конфигурируемостью - возможность детального задания характеристик конечной системы, на основе списка требуемых модулей и параметров используемых модулей. Для этого используется система сборки Mybuild, со специальным языком программирования (DSL) позволяющим описывать как модули так и систему в целом. При этом программная логика модулей располагается отдельно от описания и разрабатывается на обычном языке программирования (GPL).</p>
+<a class="header" href="#Файлы-описания-модулей" id="Файлы-описания-модулей"><h2>Файлы описания модулей</h2></a>
+<a class="header" href="#Пакеты-модулей" id="Пакеты-модулей"><h3>Пакеты модулей</h3></a>
+<p>Структурно модули организованы в иерархические группы (пространства имен), составленные по функциональной принадлежности. Данный механизм позволяет избежать коллизий в именах модулей, сохраняя их короткими.
+Как правило, имя пакета совпадает в путем в файловой системе, что облегчает поиск файлов модуля в дереве исходного кода.</p>
+<p>Пример задания имени пакета:</p>
+<pre><code class="language-java">package embox.arch
+</code></pre>
+<a class="header" href="#Интерфейсы-и-абстрактные-модули" id="Интерфейсы-и-абстрактные-модули"><h3>Интерфейсы и абстрактные модули</h3></a>
+<p>Интерфейсы для модулей являются прямым аналогом интерфейсов и абстрактных классов в объектно-ориентированном программировании.
+Язык описания модулей поддерживает наследование, таким образом, позволяя ввести понятие и интерфейсов (модулей без реализации) и абстрактных модулей (с частичной реализацией). Модули, которые реализуют один интерфейс или наследуют общий родительский модуль, взаимозаменяемы до тех пор, пока это не изменяет функциональность системы. Данный подход позволяет пользователю выбирать среди модулей, реализующих один интерфейс, но имеющих разные алгоритмы, чтобы обеспечить необходимые свойства системы. Для указания того что модуль является наследуемым нужно использовать ключевое слово <strong><em>abstract</em></strong>.</p>
+<p>Пример задания абстрактного модуля:</p>
+<pre><code class="language-java">package embox.arch
+
+//...
+
+abstract module interrupt { }
+//...
+</code></pre>
+<p>Для указания наследования используется ключевое слово <strong><em>extends</em></strong>.</p>
+<p>Пример наследования от абстрактного модуля:</p>
+<pre><code class="language-java">    module interrupt_stub extends embox.arch.interrupt {
+    //...
+    }
+</code></pre>
+<a class="header" href="#Атрибуты-модулей" id="Атрибуты-модулей"><h3>Атрибуты модулей</h3></a>
+<p>Описание каждого модуля состоит из нескольких возможных атрибутов: файлы исходного кода, опции и зависимости.</p>
+<a class="header" href="#Файлы-исходного-кода" id="Файлы-исходного-кода"><h4>Файлы исходного кода</h4></a>
+<p>Каждый модуль может указывать список файлов, которые необходимо скомпилировать и включить в итоговый образ в случае включения данного модуля в сборку.
+Список файлов указывается в атрибуте source модуля.
+Помимо “обычных” файлов на языке Си или ассемблера, можно также добавлять заголовочные файлы и дополнительные линкер-скрипты. Тип файлов различается по расширению:</p>
+<ul>
+<li>.c/.S - исходные коды на языке Си или ассемблера. При сборке компилируются и включаются в итоговый образ системы. Во время компиляции есть возможность получить значения опций модуля, к которому относятся эти файлы исходного кода.</li>
+<li>.h - заголовочные файлы, содержащие объявления и определения, необходимые для реализации модулем какого-либо интерфейса. При сборке для каждого включенного модуля генерируется специальный заголовочный файл, включающий все перечисленные .h-файлы данного модуля, а также модулей, расширяющих данный. Это позволяет использовать различные реализации того или иного интерфейса без изменения исходного кода модулей, которые его используют. Такой способ абстракции необходим, поскольку различные реализации могут определять ту или иную структуру по разному, в то время как структура может использоваться другими модулями без знания деталей реализации. То же самое относится и к макросам, inline-функциям и константам.</li>
+<li>.lds.S - линкер-скрипты, позволяющие влиять на процесс компоновки модулей в итоговый образ. Типичное использование таких скриптов - это добавление новых секций.</li>
+</ul>
+<p>Пример задания заголовочного файла с реализацией абстрактного модуля:</p>
+<pre><code class="language-java">    module interrupt_stub extends embox.arch.interrupt {
+        source &quot;interrupt_stub.h&quot;
+}
+</code></pre>
+<p>Пример задания файла с линкер скриптом и файла с исходным кодом:</p>
+<pre><code class="language-java">    module static_heap extends heap_place {
+        // ...
+        source &quot;heap.lds.S&quot;
+        source &quot;static_heap.c&quot;
+        // ...
+    }
+</code></pre>
+<a class="header" href="#Опции" id="Опции"><h4>Опции</h4></a>
+<p>Опции позволяют определить на этапе конфигурирования числовые, логические или строковые параметры, которые могут влиять способ сборки, инициализацию или работу модуля. Опции также могут иметь или не иметь значение по умолчанию. В последнем случае значение должно быть указано во время конфигурирования, в первом - это не обязательно, тогда будет использоваться значение по умолчанию.
+Опции разделяются на три типа в зависимости от типа задаваемого значения. Тип опции задается после ключевого слова option перед именем опции:</p>
+<ul>
+<li>string - строковые опции</li>
+<li>number - целочисленные данные</li>
+<li>boolean - булевое значение - true или false</li>
+</ul>
+<p>Чтобы получить значение опции при компиляции исходного кода используются специальные макросы:</p>
+<ul>
+<li>OPTION_STRING_GET - для получения значения строковых опций</li>
+<li>OPTION_NUMBER_GET - для числовых опций</li>
+<li>OPTION_BOOLEAN_GET - для булевых опций</li>
+</ul>
+<p>Аргументом макроса выступает имя опции, определенное в my-файле.</p>
+<a class="header" href="#Зависимости" id="Зависимости"><h4>Зависимости</h4></a>
+<p>Зависимости являются способом указать системе сборки, что корректное функционирование данного модуля невозможно без некоторых других модулей. Список зависимостей может включать интерфейсы, при этом это означает, что в сборку должен быть включен ровно один модуль, реализующий требуемый интерфейс.
+Межмодульные зависимости указываются через атрибут depends. В значении атрибута можно перечислять как модули, так и интерфейсы. Система сборки гарантирует, что при включении данного модуля, будут добавлены и все его зависимости. В случае зависимости от интерфейса используется одна из его реализаций.
+Знание о межмодульных зависимостях используется как для получения списка модулей для сборки, так и в момент загрузки системы (см. далее). В некоторых случаях требуется просто включить нужный модуль вместе с данным, без изменения порядка загрузки, например, для использования таких глобальных модулей (аспектов), как поддержка многопроцессорности, логгирование или отладочные утверждения (assert). Поскольку у таких модулей нет как такового состояния (загружен или не загружен), для указания их в качестве зависимости атрибут depends дополняется аннотацией @NoRuntime. В этом случае зависимость будет использоваться во время сборки, но не будет определять порядок загрузки модулей относительно друг друга.</p>
+<a class="header" href="#Аннотации" id="Аннотации"><h3>Аннотации</h3></a>
+<p>Аннотации применяются для модификации семантики некоторых элементов описания. Это позволяет дополнять язык описаний без изменения грамматики, что делает язык более гибким.</p>
+<p>Пример задания с помощью аннотации реализации абстрактного модуля по умолчанию:</p>
+<pre><code class="language-java">    @DefaultImpl(embox.arch.generic.interrupt_stub)
+    abstract module interrupt { }
+</code></pre>
+<a class="header" href="#Описание-конфигурации" id="Описание-конфигурации"><h2>Описание конфигурации</h2></a>
+<p>Описание модулей необходимо для создания целевого образа. При конфигурировании система сборки позволяет объединить отдельные модули системы (модули ядра, драйвера, тесты, приложения), задать параметры для отдельных модулей и указать дополнительные параметры для создания образа под различные аппаратные платформы.</p>
+<a class="header" href="#Структура-конфигурации" id="Структура-конфигурации"><h3>Структура конфигурации</h3></a>
+<p>Конфигурация образа происходит редактированием файлов конфигурации в каталоге conf/. Его содержимое следующее:</p>
+<ul>
+<li>lds.conf - Файл lds.conf содержит определение карты памяти, использующейся на конкретной аппаратной платформе.</li>
+<li>mods.config - Файл mods.config содержит названия и опции модулей, которые будут включены в образ ОС. Также, для каждого из перечисленного в этом файле модуля возможно указать новые значения опций.</li>
+<li>rootfs/ - Директория rootfs содержит файлы, которые будут включены в состав файловой системы, которая будет доступна на ранних этапах загрузки.</li>
+</ul>
+<a class="header" href="#Процесс-конфигурирования" id="Процесс-конфигурирования"><h3>Процесс конфигурирования</h3></a>
+<p>Использование модуля в образе ОС подразумевает его включение в конфигурацию ОС.</p>
+<a class="header" href="#Базовая-конфигурация" id="Базовая-конфигурация"><h4>Базовая конфигурация</h4></a>
+<p>Подготовка конфигурации является длительным процессом, поэтому, чтобы сократить время, затрачиваемое на конфигурирование, используются базовые конфигурации. Их назначение заключается в том, чтобы предоставить пользователю основу с некоторыми базовыми функциями, которую тот сможет модифицировать под свои нужды.</p>
+<p>В состав ОС включены несколько конфигураций, предназначенных для использования как базовых. Для каждой платформы подготовлено несколько конфигураций, обладающих разными свойствами и возможностями.</p>
+<p>Чтобы получить подготовленную конфигурацию, для, например, самой основной поддержки платформы x86, воспользуйтесь следующей командой:</p>
+<pre><code>make confload-x86/qemu
+</code></pre>
+<p>Эта команда загружает в каталог conf подготовленную базовую конфигурацию под названием qemu для платформы x86. Список всех базовых конфигураций можно увидеть и выбрать среди них, набрав:</p>
+<pre><code>make confload
+</code></pre>
+<a class="header" href="#Включение-модуля-в-конфигурацию" id="Включение-модуля-в-конфигурацию"><h4>Включение модуля в конфигурацию</h4></a>
+<p>Список модулей для включения в конфигурацию находится в файле conf/mods.config, который имеет следующую структуру:</p>
+<pre><code>package genconfig
+
+configuration conf {
+    [список_модулей]
+}
+</code></pre>
+<p>[список_модулей] определяет положение набора строк, каждая из которых определяет включение модуля. Добавьте новую строку к списку модулей следющего содержания:</p>
+<pre><code>    include pkg.new_package.empty
+</code></pre>
+<p>В итоге, файл conf/mods.config должен иметь следующее содержание:</p>
+<pre><code>package genconfig
+
+configuration conf {
+    [список_модулей]
+include pkg.new_package.empty
+}
+</code></pre>
+<p>После этого, модуль empty из пакета pkg.new_package будет включен сборку.
+Чтобы проверить непротиворечивость полученной сборки и, в случае успеха, произвести создание образа ОС, наберите</p>
+<pre><code>    make
+</code></pre>
+<p>В случае положительного результата будет выведено сообщение “Build complete”. Убедиться в том, что ОС содержит новый модуль можно запустив ОС на исполнение и выполнить команду lsmod c параметрами -n и empty, которая выведет список модулей, у которых в имени модуля присутствует подстрока “empty”.</p>
+<pre><code>lsmod -n empty
+</code></pre>
+<p>Результатом lsmod будет являться печать</p>
+<pre><code>    *  pkg.new_package.empty
+</code></pre>
+<p>Это означает, что модуль pkg.new_package.empty имеется в системе, а символ “*” обозначает, что в данный момент модуль загружен и работает.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../ru/embox_user_manual_ru.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../ru/build/embox_build_ru.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../ru/embox_user_manual_ru.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../ru/build/embox_build_ru.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Быстрый старт - Embox Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../ru/embox_quick_overview_ru.html"><strong aria-hidden="true">1.</strong> Обзор</a></li><li><a href="../ru/embox_quick_start_ru.html" class="active"><strong aria-hidden="true">2.</strong> Быстрый старт</a></li><li><a href="../ru/embox_user_manual_ru.html"><strong aria-hidden="true">3.</strong> Руководство пользователя</a></li><li><a href="../ru/embox_modular_structure_ru.html"><strong aria-hidden="true">4.</strong> Модульная структура Embox</a></li><li><a href="../ru/build/embox_build_ru.html"><strong aria-hidden="true">5.</strong> Сборка</a></li><li><ol class="section"><li><a href="../ru/build/embox_execute_debug_ru.html"><strong aria-hidden="true">5.1.</strong> Запуск и отладка</a></li></ol></li><li><a href="../ru/embox_example_list.html"><strong aria-hidden="true">6.</strong> Примеры</a></li><li><ol class="section"><li><a href="../ru/example/hello_world.html"><strong aria-hidden="true">6.1.</strong> Hello, world!</a></li><li><a href="../ru/example/blinking_led.html"><strong aria-hidden="true">6.2.</strong> Мигаем LED-светодиодом</a></li><li><a href="../ru/example/driver.html"><strong aria-hidden="true">6.3.</strong> Пример добавления драйвера</a></li><li><a href="../ru/example/external_app.html"><strong aria-hidden="true">6.4.</strong> Пример внешнего приложения</a></li></ol></li><li><a href="../ru/drivers/embox_drivers_ru.html"><strong aria-hidden="true">7.</strong> Драйверы</a></li><li><a href="../ru/embox_platform_list.html"><strong aria-hidden="true">8.</strong> Поддерживаемые платформы</a></li><li><ol class="section"><li><a href="../ru/platform/embox_supported_platforms_arm_ru.html"><strong aria-hidden="true">8.1.</strong> ARM</a></li><li><a href="../ru/platform/embox_supported_platforms_qemu_ru.html"><strong aria-hidden="true">8.2.</strong> QEMU</a></li><li><a href="../ru/platform/embox_supported_platforms_ru.html"><strong aria-hidden="true">8.3.</strong> RU</a></li><li><a href="../ru/platform/embox_supported_platforms_x86_ru.html"><strong aria-hidden="true">8.4.</strong> x86</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Embox Documentation</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#Быстрый-старт" id="Быстрый-старт"><h1>Быстрый старт</h1></a>
+<p>Ознакомление с Embox лучше начать с запуска на эмуляторе <strong><em>qemu</em></strong> поддерживающего различные процессорные архитектуры.</p>
+<a class="header" href="#Получение-кода-embox" id="Получение-кода-embox"><h2>Получение кода Embox</h2></a>
+<p>Клонируем мастер:</p>
+<pre><code>    $ git clone https://github.com/embox/embox
+</code></pre>
+<p>Либо скачиваем архивом из <a href="https://github.com/embox/embox/releases">https://github.com/embox/embox/releases</a></p>
+<a class="header" href="#Работа-в-windows--и-macos" id="Работа-в-windows--и-macos"><h2>Работа в Windows  и MacOS</h2></a>
+<p>Все описания сделаны для Linux. Для сборки и работы под Windows и MacOS лучше использовать Docker в котором уже настроено все необходимое окружение для начальной работы.
+Для этого:</p>
+<ul>
+<li>Установите docker для вашей ОС.</li>
+<li>Убедитесь, что docker установлен правильно с помощью команд:</li>
+</ul>
+<pre><code>        $ docker-machine ls
+        $ docker-machine start default
+</code></pre>
+<ul>
+<li>Перейдите в консоли в корневую папку с исходниками Embox.</li>
+<li>Запустите докер выполнив скрипт</li>
+</ul>
+<pre><code>        $ ./scripts/docker/docker_start.sh
+</code></pre>
+<ul>
+<li>Для упрощения работы выполните скрипт командой</li>
+</ul>
+<pre><code>        $. ./scripts/docker/docker_rc.sh
+</code></pre>
+<p>Данный скрипт позволит писать команду <code>dr</code> вместо <code>docker run</code></p>
+<p>Далее перед каждой командой необходимо вставлять <code>dr</code>. Например,</p>
+<pre><code>    $ dr make confload-x86/qemu
+    $ dr make
+    $ dr ./scripts/qemu/auto_qemu
+</code></pre>
+<p>Для конфигурации сборки и запуска базового темплейта.</p>
+<p>После установки и проверки работоспособности, можно пропустить раздел настройка окружения и перейти сразу к разделу “Сборка и запуск на QEMU”</p>
+<a class="header" href="#Настройка-окружения" id="Настройка-окружения"><h2>Настройка окружения</h2></a>
+<p>Необходимые пакеты: make, gcc (кросс-компилятор под выбранную архитектуру,  см. “Установка кросс-компилятора”).
+Дополнительные пакеты (рекомендуется установить сразу): build-essential gcc-multilib curl libmpc-dev python
+Пример установки для Debian:</p>
+<pre><code>    $ sudo apt-get install make gcc \
+        build-essential gcc-multilib \
+        curl libmpc-dev python
+</code></pre>
+<p>Пример установка для Arch:</p>
+<pre><code>    $ sudo pacman -S make gcc-multilib cpio qemu
+</code></pre>
+<a class="header" href="#Установка-кросс-компилятора" id="Установка-кросс-компилятора"><h2>Установка кросс-компилятора</h2></a>
+<a class="header" href="#x86" id="x86"><h3>x86:</h3></a>
+<pre><code>     $ sudo apt-get install gcc
+</code></pre>
+<p>Обычно уже установленный пакет. Вам потребуется другой компилятор, если Вы настраиваете окружение самостоятельно для Windows или MacOS.</p>
+<a class="header" href="#arm" id="arm"><h3>ARM:</h3></a>
+<pre><code>     $ sudo apt install arm-none-eabi-gcc
+</code></pre>
+<p>Или для Debian</p>
+<pre><code>    $ sudo apt install gcc-arm-none-eabi
+</code></pre>
+<p>Либо скачать архив с тулчейном с сайта <a href="https://launchpad.net/gcc-arm-embedded">https://launchpad.net/gcc-arm-embedded</a>. Распаковать архив и сделать export тулчейна:</p>
+<pre><code>   $ export PATH=$PATH:&lt;путь к тулчейну&gt;/gcc-arm-none-eabi-&lt;version&gt;/bin
+</code></pre>
+<a class="header" href="#sparc-microblaze-mips-powerpc-msp430" id="sparc-microblaze-mips-powerpc-msp430"><h3>SPARC, Microblaze, MIPS, PowerPC, MSP430:</h3></a>
+<p>Для этих архитектур можно воспользоваться нашим проектом по сборке crosstool <a href="https://github.com/embox/crosstool">https://github.com/embox/crosstool</a>.</p>
+<p>Можно скачать последнюю версию уже собранного архива в требуемым кросс-компилятором отсюда <a href="https://github.com/embox/crosstool/releases">https://github.com/embox/crosstool/releases</a>.</p>
+<p>Или собрать его выкачав скрипты из репозитория с помощью команды</p>
+<pre><code>    $ ./crosstool.sh ARCH
+</code></pre>
+<p>После этого должен появиться архив с тулчейном — ARCH-elf-toolchain.tar.bz2. Далее, его нужно распаковать и добавить в переменную окружения PATH как показано выше для ARM.</p>
+<a class="header" href="#Установка-эмулятора-qemu" id="Установка-эмулятора-qemu"><h2>Установка эмулятора QEMU</h2></a>
+<p>Поддерживаемые архитектуры: x86, ARM, MIPS, Sparc, PPC, Microblaze.</p>
+<p>Необходимые пакеты: qemu (под выбранную архитектуру)</p>
+<pre><code>    $ sudo apt-get install qemu-system-&lt;ARCH&gt; 
+</code></pre>
+<p>где <ARCH> это i386, arm, sparc, mips, ppc или misc (для microblaze)
+Примечание: Все пакеты qemu можно установить единым пакетом —</p>
+<pre><code>    $ sudo apt-get install qemu-system
+</code></pre>
+<a class="header" href="#Сборка-и-запуск-на-qemu" id="Сборка-и-запуск-на-qemu"><h2>Сборка и запуск на QEMU</h2></a>
+<p>Загружаем конфигурацию по умолчанию для выбранной архитектуры:</p>
+<pre><code>   $ make confload-&lt;ARCH&gt;/qemu
+</code></pre>
+<p>, где <ARCH>: x86, arm, mips, ppc, sparc, microblaze.
+Пример под x86:</p>
+<pre><code>    $ make confload-x86/qemu
+</code></pre>
+<p>Собираем Embox:</p>
+<pre><code>    $ make
+</code></pre>
+<p>или запускаем параллельную сборку:</p>
+<pre><code>    $ make (-jN)
+</code></pre>
+<p>Пример:</p>
+<pre><code>    $ make -j4
+</code></pre>
+<p>Запускаем:</p>
+<pre><code>    $ ./scripts/qemu/auto_qemu
+</code></pre>
+<p>Пример вывода в консоль:</p>
+<pre><code>Embox kernel start
+    unit: initializing embox.kernel.task.task_resource: done
+    unit: initializing embox.mem.vmem_alloc: done
+    ...
+</code></pre>
+<p>Если все unit тесты прошли успешно и система загружена, появиться консоль в которой можно выполнять команды. Начать можно с команды <strong><em>'help'</em></strong> которая выведет список доступных команд для вашей конфигурации.
+Для выхода из эмулятора qemu нажмите последовательно <strong><em>ctrl+’A’</em></strong> затем <strong><em>‘x’</em></strong>.</p>
+<a class="header" href="#Особенности-системы-сборки-mybuild" id="Особенности-системы-сборки-mybuild"><h2>Особенности системы сборки Mybuild</h2></a>
+<p><strong><em>Embox</em></strong> - модульная и конфигурируемая система. Для этих целей был разработан декларативный язык описания <strong><em>Mybuild</em></strong>. Он позволяет описывать как отдельные единицы системы (модули) так и всю систему в целом.</p>
+<p><strong><em>Модуль</em></strong> является базовым понятием для системы сборки. Он содержит: список файлов относящихся к данному модулю, параметры которые можно задать модулю в момент конфигурации и список зависимостей.</p>
+<p><strong><em>Конфигурация</em></strong> является детализированным описанием желаемой системы. Включает в себя: список модулей необходимых для сборки, параметры модулей и описания правил сборки (компилятор, флаги компилятора, карта памяти устройства, и так далее). На основе конфигурации и описания модулей строится граф с параметрами системы и по нему генерируются различные файлы для сборки: линкер скрипты, makefile-ы, заголовочные файлы. В конфигурации не обязательно указывать все необходимые модули, они подтягиваются по зависимостям из описания модулей.</p>
+<p>Текущая конфигурация располагается в папке <strong><em>conf/</em></strong>. Может быть выбрана с помощью команды</p>
+<pre><code>    $ make confload-&lt;CONF_NAME&gt;
+</code></pre>
+<p>Например, для задания демонстрационной конфигурации для запуска на <strong><em>qemu-system-arm</em></strong> необходимо выполнить</p>
+<pre><code>    $ make confload-arm/qemu
+</code></pre>
+<p>Для просмотра готовых конфигураций можно выполнить</p>
+<pre><code>    $ make confload
+</code></pre>
+<p>После задания текущей конфигурации можно изменять файлы под свои требования. Например, чтобы добавить какое нибудь приложение которого нет в текущей конфигурации достаточно добавить в файл <strong><em>conf/mods.conf</em></strong> строку</p>
+<pre><code>    include &lt;PACKAGE_NAME&gt;&lt;MODULE_NAME&gt;
+</code></pre>
+<p>Пример, для добавления в конфигурацию команды <strong><em>'help'</em></strong> нужно добавить строчку</p>
+<pre><code>    include embox.cmd.help
+</code></pre>
+<a class="header" href="#Создание-и-запуск-hello-world" id="Создание-и-запуск-hello-world"><h2>Создание и запуск “hello world”</h2></a>
+<p>Приложение в Embox представляет собой модуль в описании которого содержаться атрибуты указывающие, что это приложение можно запускать из командной строки. Исходный код представляет собой обычное приложение которое можно скомпилировать с том числе и в Linux окружении.</p>
+<a class="header" href="#Создание-и-запуск-примера" id="Создание-и-запуск-примера"><h3>Создание и запуск примера</h3></a>
+<p>Разберем простейшее приложение <strong><em>“hello world”</em></strong>.</p>
+<ul>
+<li>Создадим папку <strong><em>hello_world</em></strong> в <strong><em>src/cmds</em></strong>:</li>
+</ul>
+<pre><code class="language-shell">    $ mkdir src/cmds/hello_world
+</code></pre>
+<ul>
+<li>Создадим файл с исходным кодом приложения <strong><em>src/cmds/hello_world/hello_world.c</em></strong> со следующим содержанием:</li>
+</ul>
+<pre><code class="language-c">        #include &lt;stdio.h&gt;
+
+        int main(int argc, char **argv) {
+            printf(&quot;Hello, world!\n&quot;);
+        }
+</code></pre>
+<ul>
+<li>Создадим файл описания модуля <strong><em>src/cmds/hello_world/Mybuild</em></strong> следующего содержания:</li>
+</ul>
+<pre><code class="language-java">        package embox.cmd
+
+        @AutoCmd
+        @Cmd(name = &quot;hello_world&quot;, help=”First Embox application”)
+        module hello_world {
+            source &quot;hello_world.c&quot;
+        }
+</code></pre>
+<ul>
+<li>Добавим в файл конфигурации системы conf/mods.conf строчку с подключением нового модуля:</li>
+</ul>
+<pre><code>        include embox.cmd.hello_world
+</code></pre>
+<ul>
+<li>Компилируем:</li>
+</ul>
+<pre><code class="language-shell">        $ make
+</code></pre>
+<ul>
+<li>Запускаем:</li>
+</ul>
+<pre><code class="language-shell">        $ ./scripts/qemu/auto_qemu
+</code></pre>
+<p>В появившейся консоли убедимся, что если набрать команду <strong><em>'help'</em></strong> то в списке будет новая команда. Выполним команду набрав ее в консоли <strong><em>hello_world</em></strong>
+Должно появиться наше сообщение выведенное с помощью функции <strong><em>printf()</em></strong> :</p>
+<pre><code class="language-shell">        root@embox:/#hello_world 
+        Hello, world!
+        root@embox:/#
+</code></pre>
+<a class="header" href="#Файл-описания-модуля" id="Файл-описания-модуля"><h3>Файл описания модуля</h3></a>
+<p>Разберем немного подробнее файл описания модуля.</p>
+<pre><code class="language-java">        package embox.cmd
+
+        @AutoCmd
+        @Cmd(name = &quot;hello_world&quot;, help=”First Embox application”)
+        module hello_world {
+            source &quot;hello_world.c&quot;
+        }
+</code></pre>
+<p>В первой строке идет указание имени пакета <strong><em>package embox.cmd</em></strong>. В Embox все модули распределены по пакетам, для удобства именования. Полное имя модуля будет состоять из имени пакета и имени модуля. Имя модуля в нашем случае находиться в строке <strong><em>module hello_world</em></strong>.</p>
+<p>Строка <strong><em>source &quot;hello_world.c&quot;</em></strong> указывает файлы с исходным кодом необходимые для корректной сборки модуля.</p>
+<p>В строке <strong><em>@Cmd(name = &quot;hello_world&quot;, help=”First Embox application”)</em></strong> задается атрибут для модуля. Во первых модуль будет представлять из себя приложение, во вторых задает имя с помощью которого это приложение можно вызвать. И наконец, задается строка, которая будет отображаться для этого приложения при вызове команды <strong><em>'help'</em></strong>. Строка @AutoCmd указывает, что в приложении есть стандартная функция входа в приложение <strong><em>main()</em></strong>, которая будет заменена на другой символ в процессе сборки.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../ru/embox_quick_overview_ru.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../ru/embox_user_manual_ru.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../ru/embox_quick_overview_ru.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../ru/embox_user_manual_ru.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
